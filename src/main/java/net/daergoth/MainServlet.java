@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 
 public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private static final int DEFAULT_NAME_CHANGE = 5;
 
     public MainServlet() {
     }
@@ -32,7 +34,16 @@ public class MainServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		if (session.getAttribute("nameChangeNum") == null) {
-			session.setAttribute("nameChangeNum", Integer.parseInt(getServletContext().getInitParameter("nameChangeNum")));
+			Integer maxNameChange;
+			
+			try {
+				maxNameChange = Integer.parseInt(getServletContext().getInitParameter("nameChangeNum"));
+			} catch (NumberFormatException ex) {
+				System.err.println("nameChangeNum parameter is malformed! Defaulted to " + DEFAULT_NAME_CHANGE);
+				maxNameChange = DEFAULT_NAME_CHANGE;
+			}
+			
+			session.setAttribute("nameChangeNum", maxNameChange);
 		}
 		
 		session.setAttribute("nameChangeNum", (Integer)session.getAttribute("nameChangeNum") - 1);

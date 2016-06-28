@@ -1,16 +1,27 @@
 <web-app>
-    <servlet>
-        <servlet-name>MainServlet</servlet-name>
-        <servlet-class>net.daergoth.MainServlet</servlet-class>
-    </servlet>
-​
-    <servlet-mapping>
-        <servlet-name>MainServlet</servlet-name>
-        <url-pattern>/*</url-pattern>
-    </servlet-mapping>
-    
-    <context-param>
-        <param-name>nameChangeNum</param-name>
-        <param-value>5</param-value>
-    </context-param>
+	<servlet>
+		<servlet-name>MainServlet</servlet-name>
+		<servlet-class>net.daergoth.MainServlet</servlet-class>
+	</servlet>
+
+	​
+	<servlet>
+		<servlet-name>UserServlet</servlet-name>
+		<servlet-class>net.daergoth.UserServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>MainServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>UserServlet</servlet-name>
+		<url-pattern>/UserProfile</url-pattern>
+	</servlet-mapping>
+
+	<context-param>
+		<param-name>nameChangeNum</param-name>
+		<param-value>5</param-value>
+	</context-param>
 </web-app>
