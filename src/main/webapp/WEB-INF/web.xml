@@ -1,21 +1,23 @@
 <web-app>
+
 	<filter>
-		<description>
-		</description>
-		<display-name>TokenAuthFilter</display-name>
 		<filter-name>TokenAuthFilter</filter-name>
 		<filter-class>net.daergoth.TokenAuthFilter</filter-class>
 	</filter>
+	
 	<filter-mapping>
 		<filter-name>TokenAuthFilter</filter-name>
-		<url-pattern>/TokenAuthFilter</url-pattern>
+		<url-pattern>/UserProfile</url-pattern>
 	</filter-mapping>
+	
+	<listener>
+		<listener-class>net.daergoth.UserConnectionListener</listener-class>
+	</listener>
+	
 	<servlet>
 		<servlet-name>MainServlet</servlet-name>
 		<servlet-class>net.daergoth.MainServlet</servlet-class>
-	</servlet>
-
-	​
+	</servlet>​
 	<servlet>
 		<servlet-name>UserServlet</servlet-name>
 		<servlet-class>net.daergoth.UserServlet</servlet-class>
@@ -25,7 +27,6 @@
 		<servlet-name>MainServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
 	<servlet-mapping>
 		<servlet-name>UserServlet</servlet-name>
 		<url-pattern>/UserProfile</url-pattern>

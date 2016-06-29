@@ -41,15 +41,16 @@ public class UserServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/plain; charset=utf-8");
 		Gson gson = new GsonBuilder().create();
 		
 		if (request.getReader().ready()) {
 			UserProfileVO user = gson.fromJson(request.getReader(), UserProfileVO.class);
 			
+			request.getSession().removeAttribute("profile");
 			request.getSession().setAttribute("profile", user);
 			
 		} else {
+			response.setContentType("text/plain; charset=utf-8");
 			response.getWriter().append("User profile data required!");
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 		}
@@ -74,7 +75,7 @@ public class UserServlet extends HttpServlet {
 	}
 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession().setAttribute("profile", null);
+		request.getSession().removeAttribute("profile");
 	}
 
 }
